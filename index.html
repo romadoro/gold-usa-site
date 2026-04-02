@@ -3,199 +3,881 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gold USA Inc.</title>
-  <meta
-    name="description"
-    content="Gold USA Inc. is a U.S.-based company focused on precious metals, jewelry, sourcing, and brand development."
-  />
+  <title>Gold USA Inc. | Precious Metals & Jewelry</title>
+  <meta name="description" content="Gold USA Inc. is a U.S.-based company focused on precious metals, jewelry, sourcing, and brand development." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    :root {
+      --gold: #c9a96e;
+      --gold-light: #e2c898;
+      --gold-dark: #9c7a44;
+      --bg: #0d0d0d;
+      --bg-card: #161616;
+      --bg-card2: #1c1c1c;
+      --text: #f0ece4;
+      --text-muted: #9a9188;
+      --border: rgba(201, 169, 110, 0.2);
+      --radius: 12px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(180deg, #090909 0%, #131313 100%);
-      color: #f2efe8;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
       line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── NAVIGATION ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 0 40px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(13, 13, 13, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold) !important;
+      padding: 8px 22px;
+      border-radius: 4px;
+      transition: background 0.25s, color 0.25s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold) !important;
+      color: var(--bg) !important;
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #home::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,169,110,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 24px;
+      padding: 6px 18px;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-subtitle {
+      max-width: 600px;
+      margin: 0 auto 48px;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 48px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #0d0d0d;
+      padding: 14px 36px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: background 0.25s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 14px 36px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: border-color 0.25s, color 0.25s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 100px 40px;
     }
 
     .container {
-      max-width: 980px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 32px 20px 70px;
     }
 
-    .topbar {
-      text-align: center;
-      padding: 10px 0 40px;
-    }
-
-    .brand {
-      color: #c9a24a;
-      font-size: 28px;
-      letter-spacing: 7px;
-      font-weight: 700;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 60px 20px 40px;
-      border: 1px solid rgba(201, 162, 74, 0.18);
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .eyebrow {
-      color: #c9a24a;
-      letter-spacing: 3px;
-      font-size: 12px;
+    .section-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      margin-bottom: 18px;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 16px;
+      display: block;
     }
 
-    h1 {
-      font-size: clamp(34px, 6vw, 60px);
-      line-height: 1.1;
-      margin-bottom: 18px;
-      font-family: Georgia, "Times New Roman", serif;
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      max-width: 580px;
+      font-size: 1rem;
+      margin-bottom: 60px;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-card-pair {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info-card {
+      background: var(--bg-card2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: border-color 0.3s;
+    }
+
+    .info-card:hover {
+      border-color: var(--gold-dark);
+    }
+
+    .info-card-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .info-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* ── SERVICES ── */
+    #services {
+      background: var(--bg);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+
+    .service-card:hover {
+      border-color: var(--gold-dark);
+      transform: translateY(-4px);
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(201,169,110,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .service-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    /* ── VALUES ── */
+    #values {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .value-item {
+      text-align: center;
+      padding: 32px 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-card2);
+    }
+
+    .value-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .value-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
       font-weight: 500;
     }
 
-    .hero p {
-      max-width: 700px;
-      margin: 0 auto 26px;
-      color: #ddd7cb;
-      font-size: 16px;
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--bg);
     }
 
-    .divider {
-      width: 90px;
-      height: 1px;
-      margin: 0 auto;
-      background: linear-gradient(to right, transparent, #c9a24a, transparent);
-    }
-
-    .section-grid {
+    .contact-wrapper {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-      margin-top: 34px;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
     }
 
-    .card {
-      border: 1px solid rgba(201, 162, 74, 0.16);
-      border-radius: 22px;
-      padding: 28px 24px;
-      background: rgba(255, 255, 255, 0.02);
+    .contact-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 20px;
+      line-height: 1.2;
     }
 
-    .card-title {
-      color: #c9a24a;
-      font-size: 12px;
-      letter-spacing: 3px;
+    .contact-info p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .contact-detail-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(201,169,110,0.1);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-detail-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contact-detail-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .contact-detail-text a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-detail-text a:hover {
+      color: var(--gold-light);
+    }
+
+    .contact-form {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 8px;
     }
 
-    .card p {
-      color: #e6dfd2;
-      font-size: 15px;
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg-card2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      transition: border-color 0.25s;
+      outline: none;
     }
 
-    .contact-box {
-      margin-top: 24px;
-      border: 1px solid rgba(201, 162, 74, 0.16);
-      border-radius: 22px;
-      padding: 26px 24px;
-      background: rgba(255, 255, 255, 0.02);
-      text-align: center;
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(154,145,136,0.5);
     }
 
-    .contact-box h2 {
-      color: #c9a24a;
-      font-size: 12px;
-      letter-spacing: 3px;
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold-dark);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--gold);
+      color: #0d0d0d;
+      border: none;
+      padding: 14px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+      margin-top: 8px;
+    }
+
+    .form-submit:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      padding: 40px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
       font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      text-transform: uppercase;
     }
 
-    .contact-box p {
-      color: #ddd7cb;
-      margin-bottom: 10px;
-      font-size: 15px;
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
     }
 
-    .footer {
-      text-align: center;
-      margin-top: 40px;
-      color: #8f8779;
-      font-size: 12px;
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
     }
 
-    @media (max-width: 760px) {
-      .section-grid {
-        grid-template-columns: 1fr;
-      }
+    .footer-links a {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
 
-      .brand {
-        font-size: 22px;
-        letter-spacing: 5px;
-      }
+    .footer-links a:hover {
+      color: var(--gold);
+    }
 
-      .hero {
-        padding: 48px 18px 34px;
-      }
+    /* ── DIVIDER ── */
+    .gold-divider {
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin-bottom: 40px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { gap: 20px; }
+      section { padding: 72px 24px; }
+      .about-grid,
+      .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      footer { padding: 32px 24px; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      #home { padding: 100px 20px 60px; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .services-grid,
+      .values-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form { padding: 28px 20px; }
+      section { padding: 60px 20px; }
+      .footer-inner { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="topbar">
-      <div class="brand">GOLD USA INC.</div>
-    </div>
 
-    <section class="hero">
-      <div class="eyebrow">Precious Metals & Jewelry</div>
-      <h1>Company Information</h1>
-      <p>
-        Gold USA Inc. is a U.S.-based company focused on precious metals, jewelry,
-        sourcing, and brand development. Our work is centered on quality,
-        presentation, and long-term value within the gold and jewelry industry.
+  <!-- NAVIGATION -->
+  <nav>
+    <a class="nav-logo" href="#home">Gold USA Inc.</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#values">Our Values</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="container" style="text-align:center;">
+      <span class="hero-tag">Precious Metals &amp; Jewelry &nbsp;·&nbsp; Est. 1998</span>
+      <h1 class="hero-title">Gold USA <span>Inc.</span></h1>
+      <p class="hero-subtitle">
+        A U.S.-based company focused on precious metals, jewelry, sourcing, and brand development — centered on quality, presentation, and long-term value since 1998.
       </p>
-      <div class="divider"></div>
-    </section>
-
-    <section class="section-grid">
-      <div class="card">
-        <div class="card-title">What We Do</div>
-        <p>
-          Gold USA Inc. supports activities related to precious metals and jewelry,
-          including sourcing, distribution, and brand-focused business development.
-        </p>
+      <div class="hero-divider"></div>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Our Services</a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
       </div>
-
-      <div class="card">
-        <div class="card-title">Our Focus</div>
-        <p>
-          We are committed to building a professional foundation around quality,
-          reliability, and a clear long-term vision in the jewelry and gold sector.
-        </p>
-      </div>
-    </section>
-
-    <section class="contact-box">
-      <h2>Contact</h2>
-      <p>For business inquiries, please contact us directly.</p>
-      <p>info@gold-usa.com</p>
-    </section>
-
-    <div class="footer">
-      © 2026 Gold USA Inc. All rights reserved.
     </div>
-  </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <span class="section-tag">Who We Are</span>
+      <h2 class="section-title">Company Information</h2>
+      <p class="section-subtitle">
+        Gold USA Inc. is a U.S.-based company focused on precious metals, jewelry, sourcing, and brand development. Our work is centered on quality, presentation, and long-term value within the gold and jewelry industry.
+      </p>
+      <div class="gold-divider"></div>
+      <div class="about-grid">
+        <div class="about-card-pair">
+          <div class="info-card">
+            <div class="info-card-label">What We Do</div>
+            <p>Gold USA Inc. supports activities related to precious metals and jewelry, including sourcing, distribution, and brand-focused business development. We work with partners across the industry to deliver consistent, high-quality results.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Our Focus</div>
+            <p>We are committed to building a professional foundation around quality, reliability, and a clear long-term vision in the jewelry and gold sector. Every engagement is approached with care and precision.</p>
+          </div>
+        </div>
+        <div class="info-card" style="height:100%; display:flex; flex-direction:column; justify-content:center; padding:48px 40px;">
+          <div class="info-card-label">Our Mission</div>
+          <p style="font-family:'Playfair Display',serif; font-size:1.35rem; line-height:1.7; color:#f0ece4; font-weight:400; margin-bottom:24px;">
+            "Building long-term value through integrity, craftsmanship, and a deep understanding of the precious metals and jewelry market."
+          </p>
+          <p>Founded in 1998 and based in the United States, Gold USA Inc. has served clients seeking a trusted partner in the gold and jewelry industry for over 25 years — from sourcing to brand development.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <span class="section-tag">What We Offer</span>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">From sourcing to brand development, we provide end-to-end support for businesses operating in the precious metals and jewelry space.</p>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Precious Metal Sourcing</h3>
+          <p>We identify and secure high-quality gold, silver, and other precious metals through established sourcing networks in the U.S. and internationally.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Distribution</h3>
+          <p>Reliable and efficient distribution of jewelry and metal products to retailers, wholesalers, and private clients with an emphasis on quality control at every step.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          </div>
+          <h3>Brand Development</h3>
+          <p>Strategic guidance for jewelry and gold brands looking to establish or grow their presence — from identity development to market positioning.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Business Consulting</h3>
+          <p>Industry expertise available to businesses navigating the complexities of the precious metals market, from compliance to growth strategy.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Market Intelligence</h3>
+          <p>Up-to-date insights on gold and jewelry market trends, pricing benchmarks, and emerging opportunities to help you make confident decisions.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Quality Assurance</h3>
+          <p>Rigorous quality standards applied across every product and transaction, ensuring every piece meets the expectations of our clients and partners.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section id="values">
+    <div class="container">
+      <span class="section-tag">Our Foundation</span>
+      <h2 class="section-title">Built on Principle</h2>
+      <p class="section-subtitle">Every decision we make is guided by a commitment to quality, reliability, and long-term relationships.</p>
+      <div class="values-grid">
+        <div class="value-item">
+          <div class="value-number">1998</div>
+          <div class="value-label">Est. Since 1998</div>
+        </div>
+        <div class="value-item">
+          <div class="value-number">01</div>
+          <div class="value-label">Quality First</div>
+        </div>
+        <div class="value-item">
+          <div class="value-number">02</div>
+          <div class="value-label">Reliability</div>
+        </div>
+        <div class="value-item">
+          <div class="value-number">03</div>
+          <div class="value-label">Long-Term Vision</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <span class="section-tag">Get in Touch</span>
+          <h2>Contact Us</h2>
+          <p>For business inquiries, partnerships, or general questions, please reach out to us directly. We look forward to hearing from you.</p>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <a href="mailto:info@gold-usa.com">info@gold-usa.com</a>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              United States
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <form onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" placeholder="John" required />
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" placeholder="Smith" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="you@company.com" required />
+            </div>
+            <div class="form-group">
+              <label>Company (Optional)</label>
+              <input type="text" placeholder="Your Company Name" />
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea placeholder="Tell us about your inquiry..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Gold USA Inc.</div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 Gold USA Inc. All rights reserved. &nbsp;·&nbsp; Est. 1998</p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth nav highlight on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.style.color = '';
+        if (link.getAttribute('href') === '#' + current) {
+          link.style.color = 'var(--gold)';
+        }
+      });
+    });
+
+    // Contact form handler
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Message Sent!';
+      btn.style.background = '#4a7c59';
+      btn.style.color = '#fff';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Send Message';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3000);
+    }
+  </script>
 </body>
 </html>
